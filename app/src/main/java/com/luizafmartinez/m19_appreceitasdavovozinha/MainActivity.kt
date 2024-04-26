@@ -49,6 +49,7 @@ class MainActivity : AppCompatActivity() {
         adapter = ReceitasAdapter{ receita ->
             Toast.makeText(this, "${receita.titulo}", Toast.LENGTH_SHORT).show()
         }
+
         adapter.adicionarItensLista(listaReceitas)
 
         recyclerReceitas.adapter = adapter

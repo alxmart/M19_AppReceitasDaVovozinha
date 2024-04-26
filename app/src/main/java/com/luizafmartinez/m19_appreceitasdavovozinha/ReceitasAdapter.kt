@@ -39,7 +39,6 @@ class ReceitasAdapter(
             clsItem.setOnClickListener {
                 acaoClique( receita )
             }
-
         }
     }
 
