@@ -54,6 +54,5 @@ class MainActivity : AppCompatActivity() {
 
         recyclerReceitas.adapter = adapter
         recyclerReceitas.layoutManager = LinearLayoutManager(this)
-
     }
 }
