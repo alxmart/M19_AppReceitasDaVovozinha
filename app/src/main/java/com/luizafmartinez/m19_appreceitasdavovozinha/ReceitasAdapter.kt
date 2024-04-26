@@ -5,10 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 
-class ReceitasAdapter: RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
+class ReceitasAdapter(
+    private val acaoClique: ( ReceitaDataClass )-> Unit
+): RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>() {
 
     private var listaReceitas: List<ReceitaDataClass> = listOf()
     //private var listaReceitas = listOf<ReceitaDataClass()
@@ -24,6 +27,7 @@ class ReceitasAdapter: RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>(
          private var textTitulo: TextView = itemView.findViewById(R.id.textTituloReceita)
          private var textDetalhe: TextView = itemView.findViewById(R.id.textDetalheReceita)
          private var imgReceita: ImageView = itemView.findViewById(R.id.imageReceita)
+         private val clsItem: ConstraintLayout = itemView.findViewById(R.id.clsItem)
 
         fun bind(receita: ReceitaDataClass) {
             textTitulo.text = receita.titulo
@@ -31,8 +35,12 @@ class ReceitasAdapter: RecyclerView.Adapter<ReceitasAdapter.ReceitasViewHolder>(
             imgReceita.setImageDrawable(
                 ContextCompat.getDrawable( itemView.context, receita.imagem )
             )
-        }
+            // CLique
+            clsItem.setOnClickListener {
+                acaoClique( receita )
+            }
 
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ReceitasViewHolder {
